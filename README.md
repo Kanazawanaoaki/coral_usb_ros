@@ -1,6 +1,6 @@
 # 自分用
-Coral TPU環境のセットアップのしかた
-Coral TPUのインストール を行う
+## Coral TPU環境のセットアップのしかた
+# Coral TPUのインストール を行う
 https://github.com/knorth55/coral_usb_ros#install-the-edge-tpu-runtime をみてCoral TPUをインストールする
 
 echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
@@ -8,12 +8,16 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install libedgetpu1-max
 sudo apt-get install python3-edgetpu
-Tensorflowliteのインストール を行う
-https://github.com/knorth55/coral_usb_ros#install-just-the-tensorflow-lite-interpreter をみてtensorflowlite interpreterをインストールする
+
+# Tensorflowliteのインストール を行う
+https://github.com/knorth55/coral_usb_ros#install-just-the-tensorflow-lite-interpreter をみてtensorflowlite 
+
+# interpreterをインストールする
 sudo apt-get install python3-pip
 wget https://dl.google.com/coral/python/tflite_runtime-1.14.0-cp36-cp36m-linux_x86_64.whl
 pip3 install tflite_runtime-1.14.0-cp36-cp36m-linux_x86_64.whl
-ワークスペースをビルドする
+
+# ワークスペースをビルドする
 https://github.com/knorth55/coral_usb_ros#workspace-build-melodic
 をみてワークスペースを作成しコンパイルする
 
@@ -29,26 +33,30 @@ cd ~/coral_ws
 catkin init
 catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so
 catkin build -vi
-学習済みモデルをダウンロードする
+
+# 学習済みモデルをダウンロードする
 https://github.com/knorth55/coral_usb_ros#model-download をみてモデルをダウンロードする
 
 source /opt/ros/melodic/setup.bash
 source ~/coral_ws/devel/setup.bash
 roscd coral_usb/scripts
 python download_models.py
-Coral TPUを試してみる
+
+# Coral TPUを試してみる
 USBカメラを立ち上げる
 カメラノードを立ち上げる
 
 source /opt/ros/melodic/setup.bash
 rosrun usb_cam usb_cam_node
-Coralの認識ノードを立ち上げる
+
+# Coralの認識ノードを立ち上げる
 認識ノードを立ち上げる
 
 source /opt/ros/melodic/setup.bash
 source ~/coral_ws/devel/setup.bash
 roslaunch coral_usb edgetpu_object_detector.launch INPUT_IMAGE:=/usb_cam/image_raw
-結果を見てみる
+
+# 結果を見てみる
 表示ノードを立ち上げる
 
 source /opt/ros/melodic/setup.bash
